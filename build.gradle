@@ -27,9 +27,5 @@ jar {
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
-
-    from{
-        ["aaa.txt","bbb.txt"]
-    }
 }
 
