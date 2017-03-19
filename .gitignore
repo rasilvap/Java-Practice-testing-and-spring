@@ -5,8 +5,19 @@
 
 # Package Files #
 *.jar
-*.war
-*.ear
+*.iws
+*.ipr
+build/*
+gradle/*
+!build/build.xml
+*.lst
+*.iml
+*/target/
+.idea/
+.gradle/
+gradlew
+gradlew.bat
+settings.gradle
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
