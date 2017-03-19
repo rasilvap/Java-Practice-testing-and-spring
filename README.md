@@ -2,7 +2,8 @@
 Intertec test java developer
  
  Mode To Use
-  Open a git console and text the comands
+  Open a git console and text the comands:
+  
   gradlew clean build
   gradlew clean idea
  
