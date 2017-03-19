@@ -15,3 +15,21 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-core', version: '4.3.7.RELEASE'
     compile group: 'org.springframework', name: 'spring-context', version: '4.3.7.RELEASE'
 }
+sourceSets {
+    main.java.srcDir "src/main/java"
+    main.resources.srcDir "src/main/resources"
+}
+jar {
+    manifest {
+        attributes "Main-Class": "username.validation.UserNameMain"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    from{
+        ["aaa.txt","bbb.txt"]
+    }
+}
+

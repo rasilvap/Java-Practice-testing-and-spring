@@ -10,9 +10,10 @@ import java.io.IOException;
 import static username.validation.util.Constants.HOME_BUTTON_LOGIN;
 import static username.validation.util.Constants.HOME_PANEL_TITLE;
 
-public class main {
+public class UserNameMain {
 
     public static void main(String[] args) throws IOException {
+
         final JFrame homeFrame = new JFrame(HOME_PANEL_TITLE);
         final JButton btnLogin = new JButton(HOME_BUTTON_LOGIN);
         homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

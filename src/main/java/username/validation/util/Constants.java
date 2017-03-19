@@ -14,7 +14,7 @@ public final class Constants {
     public static final String BUTTON_LOGIN_LABEL = "Login";
 
 
-    public static final String INPUT_PATH_FILES = "./input/";
+    public static final String INPUT_PATH_FILES = "/inputFiles/";
     public static final String INPUT_FILE_USERNAMES_NAME = "usernames.txt";
     public static final String INPUT_FILE_RESTRICTED_WORDS = "restrictedWords.txt";
 

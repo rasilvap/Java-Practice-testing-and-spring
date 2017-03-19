@@ -2,10 +2,7 @@ package username.validation.util;
 
 import username.validation.model.Username;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +18,8 @@ public class ReadFile {
     public static List<String> readFile(String path,String fileName) {
         List<String> records = new ArrayList<String>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(path + fileName)));
+            InputStream in = ReadFile.class.getResourceAsStream(path+fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             String inputLine = null;
             Map<String, Integer> dictionary = new HashMap<String, Integer>();
             while ((inputLine = reader.readLine()) != null) {
@@ -40,4 +38,5 @@ public class ReadFile {
         }
         return records;
     }
+
 }
