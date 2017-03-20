@@ -45,28 +45,35 @@ public class LoginView extends JDialog {
         cs.gridwidth = 2;
         panel.setBorder(new LineBorder(Color.GREEN));
         btnLogin = new JButton(BUTTON_LOGIN_LABEL);
-
+        LoginControl loginControl = new LoginControl();
         btnLogin.addActionListener(e -> {
-            String message = "";
+            String message;
+            int informationMessage=0;
             try{
-                LoginControl.validateUserName(getUsername());
-                if (LoginControl.validateDuplicatedUser(getUsername())) {
+                loginControl.validateUserName(getUsername());
+                if (loginControl.validateDuplicatedUser(getUsername())) {
                     message = ERROR_MESSAGE_USERNAME_EXIST;
-                    message+=" " +LoginControl.printSuggestionUsers(getUsername(),LENGTH_RANDOM_DUPLICATED_USER);
+                    message+=" " +loginControl.printSuggestionUsers(getUsername(),LENGTH_RANDOM_DUPLICATED_USER);
                     tfUsername.setText("");
                     succeeded = false;
+                    informationMessage = JOptionPane.ERROR_MESSAGE;
                 } else {
-                    if (LoginControl.validateRestrictedWords(getUsername())) {
+                    if (loginControl.validateRestrictedWords(getUsername())) {
                         message = ERROR_MESSAGE_USERNAME_RESTRICTED_WORD;
-                        message+=" " +LoginControl.printSuggestionUsers("",LENGTH_RANDOM_RESTRICTED_UER);
+                        message+=" " +loginControl.printSuggestionUsers("",LENGTH_RANDOM_RESTRICTED_UER);
                         tfUsername.setText("");
                         succeeded = false;
+                        informationMessage = JOptionPane.ERROR_MESSAGE;
+                    }else{
+                        message = SUCCES_MESSAGE;
+                        succeeded = true;
+                        informationMessage = JOptionPane.INFORMATION_MESSAGE;
                     }
                 }
             }catch(UserNameException ex){
                 message = ex.getMessage();
             }
-            showMessageDialog(message);
+            showMessageDialog(message,informationMessage);
         });
         JPanel bp = new JPanel();
         bp.add(btnLogin);
@@ -97,12 +104,13 @@ public class LoginView extends JDialog {
     /**
      * This method paints a show dialog with the operation's result
      * @param message to show to the user in the GUI
+     * @param informationMessage to show to the type of panel
      */
-    private void showMessageDialog(String message) {
+    private void showMessageDialog(String message,int informationMessage) {
         JOptionPane.showMessageDialog(LoginView.this,
                 message,
                 PANEL_LOGIN_TITLE,
-                JOptionPane.ERROR_MESSAGE);
+                informationMessage);
     }
 
 

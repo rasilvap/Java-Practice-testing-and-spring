@@ -31,8 +31,8 @@ public class LoginControl {
      * @return true if the user already exist in the list of
      * active users, otherwise return false
      */
-    public static boolean validateDuplicatedUser(String username) {
-        UserNameDao userNameDao = (UserNameDao) ApplicationContextProvider.getApplicationContext().getBean("userNameDao");
+    public boolean validateDuplicatedUser(String username) {
+        UserNameDao userNameDao = (UserNameDao) ApplicationContextProvider.getApplicationContext().getBean(USER_NAME_DAO);
         if(userNames.isEmpty()){
             userNames = userNameDao.getAllUserNames();
         }
@@ -47,8 +47,8 @@ public class LoginControl {
      * @return true if the user contains a restricted word
      * in the list of restricted words defined, otherwise return false
      */
-    public static boolean validateRestrictedWords(String username) {
-        RestrictedWordsDao restrictedWordsDao = (RestrictedWordsDao) ApplicationContextProvider.getApplicationContext().getBean("restrictedWordDao");
+    public  boolean validateRestrictedWords(String username) {
+        RestrictedWordsDao restrictedWordsDao = (RestrictedWordsDao) ApplicationContextProvider.getApplicationContext().getBean(RESTRICTED_WORD_DAO);
         if(restrictedWords.isEmpty()){
             restrictedWords = restrictedWordsDao.getAllRestrictedWords();
         }
@@ -63,7 +63,7 @@ public class LoginControl {
      * @param username username to validate
      * @return throws UserNameException if if the userName has not at least 6 characters
      */
-    public static void validateUserName(String username) throws UserNameException {
+    public  void validateUserName(String username) throws UserNameException {
         if ((null != username) && username.length() < 6) {
             throw new UserNameException(ERROR_MESSAGE_INVALID_CHARACTERS_NUMBER);
         }
@@ -75,7 +75,7 @@ public class LoginControl {
      *
      * @return the random word
      */
-    private static String randomString(int len) {
+    public String randomString(int len) {
         SecureRandom rnd = new SecureRandom();
         StringBuilder sb = new StringBuilder(len);
         for (int i = 0; i < len; i++)
@@ -88,7 +88,7 @@ public class LoginControl {
      * @param username
      * @return the list of the suggestions users in alphabetical order
      */
-    public static List<SuggestedUserNames> getSuggestions(String username, int len) {
+    protected List<SuggestedUserNames> getSuggestions(String username, int len) {
         List<SuggestedUserNames> suggestedUserNamesList = new ArrayList<SuggestedUserNames>();
         for (int i = 0; i < LENGTH_SUGGESTION_USERS; i++) {
             SuggestedUserNames suggestedUserName=new SuggestedUserNames();
@@ -108,7 +108,7 @@ public class LoginControl {
      * @param username
      * @return String with the list of the suggestion Users
      */
-    public static String printSuggestionUsers(String username, int len) {
+    public  String printSuggestionUsers(String username, int len) {
         List<SuggestedUserNames> suggestionsList = new ArrayList<SuggestedUserNames>();
         int countAttempts = 0;
         StringBuffer stringBuffer = new StringBuffer();
@@ -121,7 +121,7 @@ public class LoginControl {
                 stringBuffer.append(newLine());
             }
             countAttempts++;
-        } while (suggestionsList.size() < LENGTH_SUGGESTION_USERS && countAttempts<4);
+        } while (suggestionsList.size() < LENGTH_SUGGESTION_USERS && countAttempts<3);
         return stringBuffer.toString();
     }
 
@@ -129,7 +129,7 @@ public class LoginControl {
      * Return a new line from according to the OS
      * @return new line
      */
-    private static String newLine(){
+    private String newLine(){
         return System.getProperty("line.separator");
     }
 }

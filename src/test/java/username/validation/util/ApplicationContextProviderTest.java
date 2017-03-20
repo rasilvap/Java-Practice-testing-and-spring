@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import static org.junit.Assert.*;
 
 /**
- * Created by rasil on 18/03/2017.
+ * @author Rodolfo Silva
  */
 public class ApplicationContextProviderTest {
 

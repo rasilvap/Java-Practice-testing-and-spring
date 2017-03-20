@@ -23,10 +23,14 @@ public final class Constants {
     public static final String ERROR_MESSAGE_INVALID_CHARACTERS_NUMBER = "UserName must be at least 6 characters";
     public static final String ERROR_MESSAGE_USERNAME_EXIST = "The UserName already exist";
     public static final String ERROR_MESSAGE_USERNAME_RESTRICTED_WORD = "The UserName contains a restricted word";
-    public static final String INFO_SUGGESTED_USERS = "Suggested Users for  ";
+    public static final String INFO_SUGGESTED_USERS = "Suggested Users: ";
+    public static final String SUCCES_MESSAGE = "succes";
 
     public static final String ALPHANUMERICAL_STRING = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     public static final int LENGTH_RANDOM_DUPLICATED_USER = 3;
     public static final int LENGTH_RANDOM_RESTRICTED_UER = 9;
     public static final int LENGTH_SUGGESTION_USERS = 14;
+
+    public static final String USER_NAME_DAO = "userNameDao";
+    public static final String RESTRICTED_WORD_DAO = "restrictedWordDao";
 }
