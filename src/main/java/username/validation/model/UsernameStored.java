@@ -7,7 +7,7 @@ import java.util.Objects;
  * Pojo from the restricted usernames
  * @author Rodolfo Silva
  */
-public class Username implements Serializable{
+public class UsernameStored implements Serializable{
 
     private static final long serialVersionUID = 8799656478674716638L;
     private String name;
@@ -23,8 +23,8 @@ public class Username implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Username username = (Username) o;
-        return Objects.equals(name, username.name);
+        UsernameStored usernameStored = (UsernameStored) o;
+        return Objects.equals(name, usernameStored.name);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Username implements Serializable{
 
     @Override
     public String toString() {
-        return "Username{" +
+        return "UsernameStored{" +
                 "name='" + name + '\'' +
                 '}';
     }

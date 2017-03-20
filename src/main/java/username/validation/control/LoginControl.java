@@ -5,7 +5,7 @@ import username.validation.dao.restrictedWords.RestrictedWordsDao;
 import username.validation.dao.username.UserNameDao;
 import username.validation.exceptions.UserNameException;
 import username.validation.model.RestrictedWords;
-import username.validation.model.Username;
+import username.validation.model.UsernameStored;
 import username.validation.util.ApplicationContextProvider;
 
 import java.security.SecureRandom;
@@ -33,8 +33,8 @@ public class LoginControl {
     public static boolean validateDuplicatedUser(String username) {
         boolean ok = false;
         UserNameDao userNameDao = (UserNameDao) ApplicationContextProvider.getApplicationContext().getBean("userNameDao");
-        List<Username> userNames = userNameDao.getAllUserNames();
-        for (Username user : userNames) {
+        List<UsernameStored> userNames = userNameDao.getAllUserNames();
+        for (UsernameStored user : userNames) {
             if (user.getName().equals(username)) {
                 ok = true;
                 break;

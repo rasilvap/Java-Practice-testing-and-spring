@@ -1,7 +1,7 @@
 package username.validation.dao.username;
 
 
-import username.validation.model.Username;
+import username.validation.model.UsernameStored;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import java.util.List;
 public interface UserNameDao {
 
     /**
-     * Look for the restricted usernames stored and cast it to a Username Collection
+     * Look for the restricted usernames stored and cast it to a UsernameStored Collection
      * @return the list of the usernames stored
      */
-    public List<Username> getAllUserNames();
+    public List<UsernameStored> getAllUserNames();
 
 }

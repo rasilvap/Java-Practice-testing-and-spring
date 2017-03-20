@@ -1,7 +1,5 @@
 package username.validation.util;
 
-import username.validation.model.Username;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
