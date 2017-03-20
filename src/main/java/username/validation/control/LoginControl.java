@@ -104,7 +104,7 @@ public class LoginControl {
 
     /**
      * Return a String with the suggestion's users
-     * Attempt 3 times if the suggestions <14 possibles
+     * attempts 3 times if the suggestions <14 possibles suggestions
      * @param username
      * @return String with the list of the suggestion Users
      */
