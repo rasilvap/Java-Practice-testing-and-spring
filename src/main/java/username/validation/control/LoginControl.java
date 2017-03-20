@@ -4,7 +4,7 @@ package username.validation.control;
 import username.validation.dao.restrictedWords.RestrictedWordsDao;
 import username.validation.dao.username.UserNameDao;
 import username.validation.exceptions.UserNameException;
-import username.validation.model.RestrictedWords;
+import username.validation.model.RestrictedUserName;
 import username.validation.model.UsernameStored;
 import username.validation.util.ApplicationContextProvider;
 
@@ -52,8 +52,8 @@ public class LoginControl {
     public static boolean validateRestrictedWords(String username) {
         boolean ok = false;
         RestrictedWordsDao restrictedWordsDao = (RestrictedWordsDao) ApplicationContextProvider.getApplicationContext().getBean("restrictedWordDao");
-        List<RestrictedWords> restrictedWords = restrictedWordsDao.getAllRestrictedWords();
-        for (RestrictedWords RestrictedWord : restrictedWords) {
+        List<RestrictedUserName> restrictedWords = restrictedWordsDao.getAllRestrictedWords();
+        for (RestrictedUserName RestrictedWord : restrictedWords) {
             if (RestrictedWord.getWord().equals(username)) {
                 ok = true;
                 break;

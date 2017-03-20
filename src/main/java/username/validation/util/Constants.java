@@ -18,7 +18,7 @@ public final class Constants {
 
     public static final String INPUT_PATH_FILES = "/inputFiles/";
     public static final String INPUT_FILE_USERNAMES_NAME = "usernamesStored.txt";
-    public static final String INPUT_FILE_RESTRICTED_WORDS = "usernames.txt";
+    public static final String INPUT_FILE_RESTRICTED_WORDS = "restrictedUserNames.txt";
 
     public static final String ERROR_MESSAGE_INVALID_CHARACTERS_NUMBER = "UserName must be at least 6 characters";
     public static final String ERROR_MESSAGE_USERNAME_EXIST = "The UserName already exist";

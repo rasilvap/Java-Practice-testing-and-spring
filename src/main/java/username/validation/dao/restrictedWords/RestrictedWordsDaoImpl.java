@@ -1,6 +1,6 @@
 package username.validation.dao.restrictedWords;
 
-import username.validation.model.RestrictedWords;
+import username.validation.model.RestrictedUserName;
 import username.validation.util.Constants;
 import username.validation.util.ReadFile;
 import java.util.ArrayList;
@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class RestrictedWordsDaoImpl implements RestrictedWordsDao{
     @Override
-    public List<RestrictedWords> getAllRestrictedWords() {
-        List<RestrictedWords> restrictedWords = new ArrayList<RestrictedWords>();
+    public List<RestrictedUserName> getAllRestrictedWords() {
+        List<RestrictedUserName> restrictedWords = new ArrayList<RestrictedUserName>();
         List<String> resulset = ReadFile.readFile(Constants.INPUT_PATH_FILES, Constants.INPUT_FILE_RESTRICTED_WORDS);
         for (String row : resulset) {
-            RestrictedWords restrictedWord = new RestrictedWords();
+            RestrictedUserName restrictedWord = new RestrictedUserName();
             restrictedWord.setWord(row);
             restrictedWords.add(restrictedWord);
         }

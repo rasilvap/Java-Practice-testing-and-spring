@@ -1,6 +1,7 @@
 package username.validation.dao.restrictedWords;
 
-import username.validation.model.RestrictedWords;
+import username.validation.model.RestrictedUserName;
+
 import java.util.List;
 
 /**
@@ -9,8 +10,8 @@ import java.util.List;
  */
 public interface RestrictedWordsDao {
     /**
-     * Look for the restricted words stored and cast it to a RestrictedWords Collection
+     * Look for the restricted words stored and cast it to a RestrictedUserName Collection
      * @return the list of the restricted words stored
      */
-    public List<RestrictedWords> getAllRestrictedWords();
+    public List<RestrictedUserName> getAllRestrictedWords();
 }

@@ -7,7 +7,7 @@ import java.util.Objects;
  * Pojo from the restricted words
  * @author Rodolfo Silva
  */
-public class RestrictedWords implements Serializable {
+public class RestrictedUserName implements Serializable {
     private static final long serialVersionUID = 8799656478674716555L;
 
     private String word;
@@ -25,7 +25,7 @@ public class RestrictedWords implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RestrictedWords that = (RestrictedWords) o;
+        RestrictedUserName that = (RestrictedUserName) o;
         return Objects.equals(word, that.word);
     }
 
@@ -36,7 +36,7 @@ public class RestrictedWords implements Serializable {
 
     @Override
     public String toString() {
-        return "RestrictedWords{" +
+        return "RestrictedUserName{" +
                 "word='" + word + '\'' +
                 '}';
     }
