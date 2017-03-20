@@ -1,7 +1,7 @@
 # Intertec-test-java-developer
 Intertec test java developer
 
-This application was developed using intellij, gradle,gson, mockito, git and the java 8 version.
+This application was developed using intellij, gradle,gson, mockito,java swing,spring, git and the java 8 version.
  
  Mode To Use
  
