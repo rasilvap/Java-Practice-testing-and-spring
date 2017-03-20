@@ -58,7 +58,7 @@ public class LoginView extends JDialog {
                 } else {
                     if (LoginControl.validateRestrictedWords(getUsername())) {
                         message = ERROR_MESSAGE_USERNAME_RESTRICTED_WORD;
-                       // message+=" " +LoginControl.printSuggestionUsers(getUsername(),LENGTH_RANDOM_RESTRICTED_UER);
+                        message+=" " +LoginControl.printSuggestionUsers("",LENGTH_RANDOM_RESTRICTED_UER);
                         tfUsername.setText("");
                         succeeded = false;
                     }

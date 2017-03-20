@@ -28,4 +28,5 @@ public final class Constants {
     public static final String ALPHANUMERICAL_STRING = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     public static final int LENGTH_RANDOM_DUPLICATED_USER = 3;
     public static final int LENGTH_RANDOM_RESTRICTED_UER = 9;
+    public static final int LENGTH_SUGGESTION_USERS = 14;
 }

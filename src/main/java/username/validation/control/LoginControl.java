@@ -5,15 +5,14 @@ import username.validation.dao.restrictedWords.RestrictedWordsDao;
 import username.validation.dao.username.UserNameDao;
 import username.validation.exceptions.UserNameException;
 import username.validation.model.RestrictedUserName;
+import username.validation.model.SuggestedUserNames;
 import username.validation.model.UsernameStored;
 import username.validation.util.ApplicationContextProvider;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import static username.validation.util.Constants.ERROR_MESSAGE_INVALID_CHARACTERS_NUMBER;
-import static username.validation.util.Constants.ALPHANUMERICAL_STRING;
-import static username.validation.util.Constants.INFO_SUGGESTED_USERS;
+import static username.validation.util.Constants.*;
 
 /**
  * This class consists exclusively of static methods that operate on the validation
@@ -23,23 +22,22 @@ import static username.validation.util.Constants.INFO_SUGGESTED_USERS;
  */
 public class LoginControl {
 
+    private static List<UsernameStored> userNames = new ArrayList<UsernameStored>();
+    private static List<RestrictedUserName> restrictedWords = new ArrayList<RestrictedUserName>();
+
     /**
      * Validate if the userName already exist
-     *
      * @param username username to validate
      * @return true if the user already exist in the list of
      * active users, otherwise return false
      */
     public static boolean validateDuplicatedUser(String username) {
-        boolean ok = false;
         UserNameDao userNameDao = (UserNameDao) ApplicationContextProvider.getApplicationContext().getBean("userNameDao");
-        List<UsernameStored> userNames = userNameDao.getAllUserNames();
-        for (UsernameStored user : userNames) {
-            if (user.getName().equals(username)) {
-                ok = true;
-                break;
-            }
+        if(userNames.isEmpty()){
+            userNames = userNameDao.getAllUserNames();
         }
+        boolean ok = userNames.stream()
+                .anyMatch(user -> user.getName().equals(username));
         return ok;
     }
 
@@ -50,20 +48,18 @@ public class LoginControl {
      * in the list of restricted words defined, otherwise return false
      */
     public static boolean validateRestrictedWords(String username) {
-        boolean ok = false;
         RestrictedWordsDao restrictedWordsDao = (RestrictedWordsDao) ApplicationContextProvider.getApplicationContext().getBean("restrictedWordDao");
-        List<RestrictedUserName> restrictedWords = restrictedWordsDao.getAllRestrictedWords();
-        for (RestrictedUserName RestrictedWord : restrictedWords) {
-            if (RestrictedWord.getWord().equals(username)) {
-                ok = true;
-                break;
-            }
+        if(restrictedWords.isEmpty()){
+            restrictedWords = restrictedWordsDao.getAllRestrictedWords();
         }
+        boolean ok = restrictedWords.stream()
+                .anyMatch(restrictedWord -> restrictedWord.getWord().equals(username));
         return ok;
     }
 
     /**
      * Validate if the userName has at least 6 characters
+     *
      * @param username username to validate
      * @return throws UserNameException if if the userName has not at least 6 characters
      */
@@ -76,6 +72,7 @@ public class LoginControl {
     /**
      * Return a random words serie in order to
      * concataete to the username suggestions
+     *
      * @return the random word
      */
     private static String randomString(int len) {
@@ -89,31 +86,51 @@ public class LoginControl {
     /**
      * Return a list of the suggestions users
      * @param username
-     * @return the list of the suggestions users
+     * @return the list of the suggestions users in alphabetical order
      */
-    public static List<String> getSuggestions(String username,int len) {
-        List<String> suggestionsList = new ArrayList<String>();
-        for (int i = 0; i < 13; i++) {
-            suggestionsList.add(username+randomString(len));
+    public static List<SuggestedUserNames> getSuggestions(String username, int len) {
+        List<SuggestedUserNames> suggestedUserNamesList = new ArrayList<SuggestedUserNames>();
+        for (int i = 0; i < LENGTH_SUGGESTION_USERS; i++) {
+            SuggestedUserNames suggestedUserName=new SuggestedUserNames();
+            String suggestedWord = randomString(len);
+            suggestedUserName.setName(username+suggestedWord);
+            if (!validateDuplicatedUser(suggestedWord) && !validateRestrictedWords(suggestedWord)) {
+                suggestedUserNamesList.add(suggestedUserName);
+            }
         }
-        return suggestionsList;
+        suggestedUserNamesList.sort(Comparator.comparing(suggestedWord -> suggestedWord.getName().toUpperCase()));
+        return suggestedUserNamesList;
     }
 
     /**
      * Return a String with the suggestion's users
+     * Attempt 3 times if the suggestions <14 possibles
      * @param username
      * @return String with the list of the suggestion Users
      */
-    public static String printSuggestionUsers(String username,int len){
+    public static String printSuggestionUsers(String username, int len) {
+        List<SuggestedUserNames> suggestionsList = new ArrayList<SuggestedUserNames>();
+        int countAttempts = 0;
         StringBuffer stringBuffer = new StringBuffer();
-        List<String> suggestionsList = getSuggestions(username,len);
-        stringBuffer.append(System.getProperty( "line.separator" )+INFO_SUGGESTED_USERS);
-        stringBuffer.append(username+System.getProperty( "line.separator" ));
-        for (String suggestionUser:suggestionsList) {
-            stringBuffer.append(suggestionUser);
-            stringBuffer.append(System.getProperty( "line.separator" ));
-        }
+        do {
+            suggestionsList = getSuggestions(username, len);
+            stringBuffer.append(newLine() + INFO_SUGGESTED_USERS);
+            stringBuffer.append(username + newLine());
+            for (SuggestedUserNames suggestionUser : suggestionsList) {
+                stringBuffer.append(suggestionUser.getName());
+                stringBuffer.append(newLine());
+            }
+            countAttempts++;
+        } while (suggestionsList.size() < LENGTH_SUGGESTION_USERS && countAttempts<4);
         return stringBuffer.toString();
+    }
+
+    /**
+     * Return a new line from according to the OS
+     * @return new line
+     */
+    private static String newLine(){
+        return System.getProperty("line.separator");
     }
 }
 
