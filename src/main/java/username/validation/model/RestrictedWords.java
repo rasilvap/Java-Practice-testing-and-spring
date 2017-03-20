@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Created by rasil on 18/03/2017.
+ * Pojo from the restricted words
+ * @author Rodolfo Silva
  */
 public class RestrictedWords implements Serializable {
     private static final long serialVersionUID = 8799656478674716555L;
 
     private String word;
+
 
     public String getWord() {
         return word;

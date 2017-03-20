@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Created by rasil on 18/03/2017.
+ * Pojo from the restricted suggestedUserNames
+ * @author Rodolfo Silva
  */
 public class SuggestedUserNames implements Serializable {
 

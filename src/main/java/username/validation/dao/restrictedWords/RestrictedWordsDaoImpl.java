@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rasil on 18/03/2017.
+ * @author  Rodolfo Silva
  */
 public class RestrictedWordsDaoImpl implements RestrictedWordsDao{
     @Override

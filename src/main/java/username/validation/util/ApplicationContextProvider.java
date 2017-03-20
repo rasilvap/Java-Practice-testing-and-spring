@@ -4,14 +4,27 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Created by rasil on 18/03/2017.
+ * This class provides an unique instance of the ApplicationContext
+ *
+ * @author Rodolfo Silva
  */
-public class ApplicationContextProvider  {
+public class ApplicationContextProvider {
 
+    /**
+     * private static method in order to make sure the singleton patter implementation
+     */
     private static ApplicationContext context;
 
-    private ApplicationContextProvider() {}
+    /**
+     * Private constructor in order to make sure the singleton patter implementation
+     */
+    private ApplicationContextProvider() {
+    }
 
+    /**
+     * Take the context definition files from the class path
+     * @return the application context
+     */
     public static ApplicationContext getApplicationContext() {
         if (context == null) {
             context = new ClassPathXmlApplicationContext("/application-context.xml");

@@ -6,10 +6,13 @@ import username.validation.view.LoginView;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-
 import static username.validation.util.Constants.HOME_BUTTON_LOGIN;
 import static username.validation.util.Constants.HOME_PANEL_TITLE;
 
+/**
+ * This class contains the main of the Application
+ * @author Rodolfo Silva
+ */
 public class UserNameMain {
 
     public static void main(String[] args) throws IOException {

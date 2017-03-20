@@ -3,7 +3,10 @@ package username.validation.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+/**
+ * Pojo from the restricted usernames
+ * @author Rodolfo Silva
+ */
 public class Username implements Serializable{
 
     private static final long serialVersionUID = 8799656478674716638L;
