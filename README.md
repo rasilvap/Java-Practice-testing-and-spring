@@ -1,4 +1,4 @@
-# Intertec-test-java-developer
+# Java Practice MVC, mockito, spring and gson.
 Intertec test java developer
 
 This application was developed using intellij, gradle,gson, mockito,java swing,spring, git and the java 8 version.
