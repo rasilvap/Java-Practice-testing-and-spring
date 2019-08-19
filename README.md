@@ -27,23 +27,27 @@ and a list of restricetd words in the file:\src\main\resources\inputFiles\restri
 
 You can modify the stored type and then you have to modify the DaoImplementations classes according of the data Sotored type you choosed: database, json Files, xml etc. 
 
-Funtional explanation
+# Funtional explanation
 
 The App receives a username from the user and it checks in a storage (could be anything DB, dictionary, file, mock
 data, etc.. whatever you prefer) if the username is already taken or if is a valid new username.
+
 If the username is valid it returns a success Boolean result if not it returns a False Boolean result with a List of at
 least 14 alternate suggested usernames based of the input username string. The alternate usernames List should
 be in alphabetical order and also each suggested username should be unique. (e.g: input username is john and
 taken, the suggested alternates could be : john1, john2,johnJohn,etc)
+
 There is also a dictionary/list of restricted words which the username should not contain. This dictionary of words
 could contain any list of words that we want to exclude from being used in the username. So a username would
 fail also if it contains a restricted word and it would also generate the alternate username list from this. (e.g:
 possible List : cannabis, abuse, crack, damn, drunk, grass.) The design should allow adding more restricted words
 to the list in the future in an easy manner.
+
 The usernames in the suggested alternate list should also be available and should not contain a restricted word.
 Hint: The app should try to generate 14 possible usernames from these rules at least three times. It if it is unable
 to generate 14 usernames it returns the list with the number it could generate (less than 14).
-Example of a possible interface
+Example of a possible interface.
+
 Result&lt;Boolean, List&lt;String&gt;&gt; result = checkUsername(String username)
 Result contains the Boolean which identifies the result of the operation. TRUE= success: username is valid, FALSE =
 fail: username is invalid.
