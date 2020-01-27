@@ -7,6 +7,7 @@ Mode To Use
 Make sure you have installed gradle in you machine, if you are not sure follow the gradle documentation: https://docs.gradle.org/current/userguide/installation.html
  
 Make sure too that you have installed the java 8 version: Follow the next link:
+
  
 https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/
 
