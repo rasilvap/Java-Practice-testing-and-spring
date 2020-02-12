@@ -28,7 +28,7 @@ and a list of restricetd words in the file:\src\main\resources\inputFiles\restri
 
 You can modify the stored type and then you have to modify the DaoImplementations classes according of the data Sotored type you choosed: database, json Files, xml etc. 
 
-# Funtional explanation
+# Functional explanation
 
 The App receives a username from the user and it checks in a storage (could be anything DB, dictionary, file, mock
 data, etc.. whatever you prefer) if the username is already taken or if is a valid new username.
