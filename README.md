@@ -4,6 +4,7 @@ This application was developed using intellij, gradle,gson, mockito,java swing,s
  
 Mode To Use
  
+ 
 Make sure you have installed gradle in you machine, if you are not sure follow the gradle documentation: https://docs.gradle.org/current/userguide/installation.html
  
 Make sure too that you have installed the java 8 version: Follow the next link:
